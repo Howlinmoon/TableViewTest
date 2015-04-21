@@ -9,7 +9,24 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
+    
+    let people = [
+        ("Captain Kirk", "Star Trek"),
+        ("Lt. Sulu", "Star Trek"),
+        ("Esn. Chekov", "Star Trek"),
+        ("Cmdr. Spock", "Star Trek"),
+        ("Lt. Uhura", "Star Trek")
+    ]
 
+    let ships = [
+        ("Serenity", "Firefly"),
+        ("Enterprise", "Star Trek"),
+        ("Eagle 7", "Space 1999"),
+        ("White Star", "Babylon 5"),
+        ("X-Wing", "Star Wars")
+    ]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -27,7 +44,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return people.count
     }
     
     
@@ -35,7 +52,10 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         var cell = UITableViewCell()
         
-        cell.textLabel?.text = "Bacon!"
+        
+        var (personName, personShip) = people[indexPath.row]
+        
+        cell.textLabel?.text = personName
         
         return cell
         
