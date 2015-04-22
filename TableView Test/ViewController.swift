@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
     
+    // Section #0
     let people = [
         ("Captain Kirk", "Star Trek"),
         ("Lt. Sulu", "Star Trek"),
@@ -18,6 +19,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         ("Lt. Uhura", "Star Trek")
     ]
 
+    // Section #1
     let ships = [
         ("Serenity", "Firefly"),
         ("Enterprise", "Star Trek"),
@@ -39,12 +41,21 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return people.count
+        var howMany = 0
+        if section == 0 {
+            howMany = people.count
+        }
+        
+        if section == 1 {
+            howMany = ships.count
+        }
+        
+        return howMany
     }
     
     
@@ -52,14 +63,29 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         var cell = UITableViewCell()
         
+        if indexPath.section == 0 {
+            var (personName, personShip) = people[indexPath.row]
+            cell.textLabel?.text = personName
+        }
         
-        var (personName, personShip) = people[indexPath.row]
+        if indexPath.section == 1 {
+            var (shipName, show) = ships[indexPath.row]
+            cell.textLabel?.text = shipName
+        }
         
-        cell.textLabel?.text = personName
         
         return cell
         
         
+    }
+    
+    // Give each section a title
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Star Trek Officers"
+        } else {
+            return "Sci-Fi Ships"
+        }
     }
     
 
